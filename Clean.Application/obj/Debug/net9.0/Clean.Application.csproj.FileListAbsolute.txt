@@ -1,0 +1,17 @@
+D:\MyProjects\NoteApp\Clean.Application\bin\Debug\net9.0\Clean.Application.deps.json
+D:\MyProjects\NoteApp\Clean.Application\bin\Debug\net9.0\Clean.Application.runtimeconfig.json
+D:\MyProjects\NoteApp\Clean.Application\bin\Debug\net9.0\Clean.Application.dll
+D:\MyProjects\NoteApp\Clean.Application\bin\Debug\net9.0\Clean.Application.pdb
+D:\MyProjects\NoteApp\Clean.Application\bin\Debug\net9.0\Clean.Domain.dll
+D:\MyProjects\NoteApp\Clean.Application\bin\Debug\net9.0\Clean.Domain.pdb
+D:\MyProjects\NoteApp\Clean.Application\obj\Debug\net9.0\Clean.Application.csproj.AssemblyReference.cache
+D:\MyProjects\NoteApp\Clean.Application\obj\Debug\net9.0\Clean.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\MyProjects\NoteApp\Clean.Application\obj\Debug\net9.0\Clean.Application.AssemblyInfoInputs.cache
+D:\MyProjects\NoteApp\Clean.Application\obj\Debug\net9.0\Clean.Application.AssemblyInfo.cs
+D:\MyProjects\NoteApp\Clean.Application\obj\Debug\net9.0\Clean.Application.csproj.CoreCompileInputs.cache
+D:\MyProjects\NoteApp\Clean.Application\obj\Debug\net9.0\Clean.Ap.33428A71.Up2Date
+D:\MyProjects\NoteApp\Clean.Application\obj\Debug\net9.0\Clean.Application.dll
+D:\MyProjects\NoteApp\Clean.Application\obj\Debug\net9.0\refint\Clean.Application.dll
+D:\MyProjects\NoteApp\Clean.Application\obj\Debug\net9.0\Clean.Application.pdb
+D:\MyProjects\NoteApp\Clean.Application\obj\Debug\net9.0\Clean.Application.genruntimeconfig.cache
+D:\MyProjects\NoteApp\Clean.Application\obj\Debug\net9.0\ref\Clean.Application.dll

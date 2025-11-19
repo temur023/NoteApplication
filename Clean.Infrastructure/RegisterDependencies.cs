@@ -1,0 +1,25 @@
+﻿using Clean.Application.Abstractions;
+using Clean.Application.Services;
+using Clean.Infrastructure.Data;
+using Clean.Infrastructure.Repositories.Authentication;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Clean.Infrastructure;
+
+public static class RegisterDependencies
+{
+    public static IServiceCollection RegisterInfrastructureServices(this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        var connectionString = configuration.GetConnectionString("Default");
+        services.AddDbContext<DataContext>(options =>
+            options.UseNpgsql(connectionString));
+        services.AddScoped<IDbContext>(provider => provider.GetRequiredService<DataContext>());
+        services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<IAuthService, AuthService>();
+        return services;
+    }
+    
+}
