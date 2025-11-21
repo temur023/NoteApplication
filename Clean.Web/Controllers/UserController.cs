@@ -1,7 +1,6 @@
 using Clean.Application.Dtos.User;
 using Clean.Application.Filters;
 using Clean.Application.Services;
-using Clean.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace NoteApp.Controllers;

@@ -1,0 +1,41 @@
+using Clean.Application.Dtos.Notification;
+using Clean.Application.Filters;
+using Clean.Application.Services;
+using Microsoft.AspNetCore.Mvc;
+
+namespace NoteApp.Controllers;
+
+[ApiController]
+[Route("api/notes")]
+public class NoteController(INoteService service):Controller
+{
+    [HttpGet("get-all")]
+    public async Task<IActionResult> GetAll([FromQuery] NoteFilter filter)
+    {
+        return Ok(await service.GetAll(filter));
+    }
+
+    [HttpGet("get-by-id")]
+    public async Task<IActionResult> Get(int id)
+    {
+        return Ok(await service.GetById(id));
+    }
+
+    [HttpPost("create")]
+    public async Task<IActionResult> Create( NoteCreateDto note)
+    {
+        return Ok(await service.Create(note));
+    }
+
+    [HttpPut("update")]
+    public async Task<IActionResult> Update(NoteUpdateDto note)
+    {
+        return Ok(await service.Update(note));
+    }
+
+    [HttpDelete("delete")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        return Ok(await service.Delete(id));
+    }
+}

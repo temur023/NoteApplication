@@ -7,5 +7,5 @@ public class Note
     public User User { get; set; }
     public string Title { get; set; }
     public string Content { get; set; }
-    public DateTime CreatedAt { get; set; }
+    public DateOnly CreatedAt { get; set; }
 }
