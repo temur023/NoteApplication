@@ -1,6 +1,7 @@
 ﻿using Clean.Application.Abstractions;
 using Clean.Application.Services;
 using Clean.Infrastructure.Data;
+using Clean.Infrastructure.Repositories;
 using Clean.Infrastructure.Repositories.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,8 @@ public static class RegisterDependencies
         services.AddScoped<ITokenRepository, TokenRepository>();
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUserService, UserService>();
         return services;
     }
     

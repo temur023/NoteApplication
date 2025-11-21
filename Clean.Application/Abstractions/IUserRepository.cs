@@ -6,9 +6,8 @@ namespace Clean.Application.Abstractions;
 
 public interface IUserRepository
 {
-    Task<UserGetDto> GetAll(UserFilter filter);
-    Task<UserGetDto> GetById(int id);
-    Task<UserGetDto> Update(UserCreateDto dto);
-    Task<string> Delete(int id);
-    Task<UserUpdateRoleDto> UpdateRole(UserUpdateRoleDto dto);
+    Task<PagedResponse<UserGetDto>> GetAll(UserFilter filter);
+    Task<Response<UserGetDto>> GetById(int id);
+    Task<Response<UserGetDto>> Update(UserUpdateDto dto);
+    Task<Response<string>> Delete(int id);
 }
