@@ -3,6 +3,7 @@ using Clean.Application.Services;
 using Clean.Infrastructure.Data;
 using Clean.Infrastructure.Repositories;
 using Clean.Infrastructure.Repositories.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,7 @@ public static class RegisterDependencies
         services.AddScoped<INoteService, NoteService>();
         services.AddScoped<IReminderRepository, ReminderRepository>();
         services.AddScoped<IReminderService, ReminderService>();
+        services.AddScoped<HttpContextAccessor>();
         return services;
     }
     

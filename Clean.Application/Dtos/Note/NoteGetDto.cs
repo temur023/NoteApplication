@@ -4,5 +4,5 @@ public class NoteGetDto
 {
     public string Title { get; set; }
     public string Content { get; set; }
-    public DateOnly CreatedAt { get; set; }
+    public DateTimeOffset CreatedAt { get; set; }
 }

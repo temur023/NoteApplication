@@ -38,4 +38,4 @@ public class ReminderController(IReminderService service):ControllerBase
     {
         return Ok(await service.Delete(id));
     }
-}
+}   

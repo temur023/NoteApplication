@@ -1,10 +1,12 @@
 using Clean.Application.Dtos.Notification;
 using Clean.Application.Filters;
 using Clean.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace NoteApp.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/notes")]
 public class NoteController(INoteService service):ControllerBase
