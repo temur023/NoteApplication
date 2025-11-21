@@ -25,10 +25,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Clean.Infrastructure\Clean.Infrastructure.csproj" />
     </ItemGroup>
 

@@ -1,8 +1,9 @@
+using Clean.Application.Abstractions;
 using Clean.Domain.Entities;
 
 namespace Clean.Application.Services;
 
-public classTokenService(ITokenService service):ITokenService
+public class TokenService(ITokenRepository service):ITokenService
 {
     public async Task<string> GenerateJwtToken(User user)
     {

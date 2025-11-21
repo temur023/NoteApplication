@@ -5,25 +5,24 @@ using Clean.Permissions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddOpenApi();
 builder.Services.RegisterInfrastructureServices(builder.Configuration);
+
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
 
+// JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
         var keyString = builder.Configuration["Jwt:Key"];
-        Console.WriteLine($" JWT key from config: {keyString}");
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyString));
 
         options.TokenValidationParameters = new TokenValidationParameters
@@ -32,52 +31,44 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = key
-        };
-
-        options.Events = new JwtBearerEvents
-        {
-            OnAuthenticationFailed = context =>
-            {
-                Console.WriteLine($"JWT validation failed: {context.Exception}");
-                return Task.CompletedTask;
-            },
-            OnTokenValidated = context =>
-            {
-                Console.WriteLine("JWT token validated successfully");
-                return Task.CompletedTask;
-            }
         };
     });
 builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
 builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("Permission.CanGet", policy =>
-        policy.RequireClaim("Permission", "Permission.CanGet"));
-    
+    options.AddPolicy("Permission.CanGet", policy => 
+        policy.RequireClaim("Permission", "Permission.CanGet")); 
     options.AddPolicy("Permission.CanUpdate", policy =>
         policy.RequireClaim("Permission", "Permission.CanAdd"));
 });
 
+// Authorization
+builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+
+builder.Services.AddAuthorization();
+
+// Swagger
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
-        Description = "Enter your access token",
+        Description = "Enter your JWT like: Bearer {token}",
         Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer",
-        BearerFormat = "Jwt"
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer"
     });
 
-    opt.AddSecurityRequirement(new OpenApiSecurityRequirement {
+    opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
         {
-            new OpenApiSecurityScheme 
+            new OpenApiSecurityScheme
             {
                 Reference = new OpenApiReference 
                 {
@@ -85,19 +76,22 @@ builder.Services.AddSwaggerGen(opt =>
                     Id = "Bearer"
                 }
             },
-            new string[] {}
+            Array.Empty<string>()
         }
     });
 });
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
