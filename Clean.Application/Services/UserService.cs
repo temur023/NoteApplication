@@ -7,23 +7,23 @@ namespace Clean.Application.Services;
 
 public class UserService(IUserRepository repository):IUserService
 {
-    public Task<PagedResponse<UserGetDto>> GetAll(UserFilter filter)
+    public async Task<PagedResponse<UserGetDto>> GetAll(UserFilter filter)
     {
-        return repository.GetAll(filter);
+        return await repository.GetAll(filter);
     }
 
-    public Task<Response<UserGetDto>> GetById(int id)
+    public async Task<Response<UserGetDto>> GetById(int id)
     {
-        return repository.GetById(id);
+        return await repository.GetById(id);
     }
 
-    public Task<Response<UserGetDto>> Update(UserUpdateDto dto)
+    public async Task<Response<UserGetDto>> Update(UserUpdateDto dto)
     {
-        return repository.Update(dto);
+        return await repository.Update(dto);
     }
 
-    public Task<Response<string>> Delete(int id)
+    public async Task<Response<string>> Delete(int id)
     {
-        return repository.Delete(id);
+        return await repository.Delete(id);
     }
 }

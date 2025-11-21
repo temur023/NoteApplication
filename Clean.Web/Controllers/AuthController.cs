@@ -6,7 +6,7 @@ namespace NoteApp.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController(IAuthService service):Controller
+public class AuthController(IAuthService service):ControllerBase
 {
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequestDto dto)

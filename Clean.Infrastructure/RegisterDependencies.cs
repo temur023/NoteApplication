@@ -26,6 +26,8 @@ public static class RegisterDependencies
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<INoteRepository, NoteRepository>();
         services.AddScoped<INoteService, NoteService>();
+        services.AddScoped<IReminderRepository, ReminderRepository>();
+        services.AddScoped<IReminderService, ReminderService>();
         return services;
     }
     

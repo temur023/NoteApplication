@@ -1,10 +1,10 @@
-﻿using Clean.Application.Dtos.Reminder;
+using Clean.Application.Dtos.Reminder;
 using Clean.Application.Filters;
 using Clean.Application.Responses;
 
-namespace Clean.Application.Services;
+namespace Clean.Application.Abstractions;
 
-public interface IReminderService
+public interface IReminderRepository
 {
     Task<PagedResponse<ReminderGetDto>> GetAll(ReminderFilter filter);
     Task<Response<ReminderGetDto>> GetById(int id);

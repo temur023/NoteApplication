@@ -7,7 +7,7 @@ namespace NoteApp.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UserController(IUserService service):Controller
+public class UserController(IUserService service):ControllerBase
 {
     [HttpGet("get-all")]
     public async Task<IActionResult> GetAll([FromQuery] UserFilter filter)
@@ -15,7 +15,7 @@ public class UserController(IUserService service):Controller
         return Ok(await service.GetAll(filter));
     }
 
-    [HttpGet("get-by-id")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
         return Ok(await service.GetById(id));
@@ -27,7 +27,7 @@ public class UserController(IUserService service):Controller
         return Ok(await service.Update(dto));
     }
 
-    [HttpDelete("delete")]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
         return Ok(await service.Delete(id));

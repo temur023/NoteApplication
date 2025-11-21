@@ -1,4 +1,4 @@
-using Clean.Application.Dtos.Notification;
+using Clean.Application.Dtos.Reminder;
 using Clean.Application.Filters;
 using Clean.Application.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -6,31 +6,31 @@ using Microsoft.AspNetCore.Mvc;
 namespace NoteApp.Controllers;
 
 [ApiController]
-[Route("api/notes")]
-public class NoteController(INoteService service):ControllerBase
+[Route("api/reminder")]
+public class ReminderController(IReminderService service):ControllerBase
 {
     [HttpGet("get-all")]
-    public async Task<IActionResult> GetAll([FromQuery] NoteFilter filter)
+    public async Task<IActionResult> GetAll(ReminderFilter filter)
     {
         return Ok(await service.GetAll(filter));
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> Get(int id)
+    public async Task<IActionResult> GetById(int id)
     {
         return Ok(await service.GetById(id));
     }
 
     [HttpPost("create")]
-    public async Task<IActionResult> Create( NoteCreateDto note)
+    public async Task<IActionResult> Create(ReminderCreateDto dto)
     {
-        return Ok(await service.Create(note));
+        return Ok(await service.Create(dto));
     }
 
     [HttpPut("update")]
-    public async Task<IActionResult> Update(NoteUpdateDto note)
+    public async Task<IActionResult> Update(ReminderUpdateDto dto)
     {
-        return Ok(await service.Update(note));
+        return Ok(await service.Update(dto));
     }
 
     [HttpDelete("{id}")]
