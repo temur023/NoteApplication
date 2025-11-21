@@ -1,12 +1,14 @@
-﻿using Clean.Application.Dtos.User;
+﻿using Clean.Application.Abstractions;
+using Clean.Application.Dtos.User;
 using Clean.Application.Responses;
 using Clean.Application.Services;
+using Clean.Domain.Entities;
 using Clean.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Clean.Infrastructure.Repositories.Authentication;
 
-public class AuthRepository(DataContext context, ITokenService service):IAuthService
+public class AuthRepository(DataContext context, ITokenRepository service):IAuthRepository
 {
     public async Task<Response<LoginResponseDto>> Login(LoginRequestDto dto)
     {
@@ -25,5 +27,27 @@ public class AuthRepository(DataContext context, ITokenService service):IAuthSer
             Role = user.Role.ToString()
         };
         return new Response<LoginResponseDto>(200,"Login successful", response);
+    }
+
+    public async Task<Response<UserGetDto>> Create(UserCreateDto dto)
+    {
+        var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.PasswordHash);
+        
+        var model = new User()
+        {
+            Name = dto.Name,
+            PasswordHash = hashedPassword,
+            Role = dto.Role
+        };
+        context.Users.Add(model);
+        await context.SaveChangesAsync();
+        var userDto = new UserGetDto()
+        {
+            Id = model.Id,
+            Name = dto.Name,
+            PassworodHash = dto.PasswordHash,
+            Role = model.Role
+        };
+        return new Response<UserGetDto>(200, "User created", userDto);
     }
 }

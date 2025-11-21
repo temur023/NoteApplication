@@ -17,6 +17,8 @@ public static class RegisterDependencies
         services.AddDbContext<DataContext>(options =>
             options.UseNpgsql(connectionString));
         services.AddScoped<IDbContext>(provider => provider.GetRequiredService<DataContext>());
+        services.AddScoped<IAuthRepository, AuthRepository>();
+        services.AddScoped<ITokenRepository, TokenRepository>();
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IAuthService, AuthService>();
         return services;

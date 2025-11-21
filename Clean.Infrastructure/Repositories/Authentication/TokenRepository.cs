@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Clean.Application.Abstractions;
 using Clean.Application.Services;
 using Clean.Domain.Entities;
 using Clean.Permissions;
@@ -9,7 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Clean.Infrastructure.Repositories.Authentication;
 
-public class TokenRepository(IConfiguration configuration):ITokenService
+public class TokenRepository(IConfiguration configuration):ITokenRepository
 {
     public Task<string> GenerateJwtToken(User user)
     {

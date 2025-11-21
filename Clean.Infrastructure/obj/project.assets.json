@@ -3267,39 +3267,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\irgas\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/fsdf/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\MyProjects\\NoteApp\\Clean.Infrastructure\\Clean.Infrastructure.csproj",
+      "projectUniqueName": "/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/Clean.Infrastructure.csproj",
       "projectName": "Clean.Infrastructure",
-      "projectPath": "D:\\MyProjects\\NoteApp\\Clean.Infrastructure\\Clean.Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\irgas\\.nuget\\packages\\",
-      "outputPath": "D:\\MyProjects\\NoteApp\\Clean.Infrastructure\\obj\\",
+      "projectPath": "/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/Clean.Infrastructure.csproj",
+      "packagesPath": "/Users/fsdf/.nuget/packages/",
+      "outputPath": "/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\irgas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/fsdf/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "D:\\MyProjects\\NoteApp\\Clean.Application\\Clean.Application.csproj": {
-              "projectPath": "D:\\MyProjects\\NoteApp\\Clean.Application\\Clean.Application.csproj"
+            "/Users/fsdf/Documents/Projects/NoteApplication/Clean.Application/Clean.Application.csproj": {
+              "projectPath": "/Users/fsdf/Documents/Projects/NoteApplication/Clean.Application/Clean.Application.csproj"
             }
           }
         }
@@ -3375,7 +3368,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/Users/fsdf/.dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
