@@ -14,6 +14,8 @@ public class UserRepository(DataContext context):IUserRepository
         var query = context.Users.AsQueryable();
         if(!String.IsNullOrWhiteSpace(filter.Name))
             query = query.Where(u=>u.Name.ToLower().Contains(filter.Name.ToLower()));
+        if(!String.IsNullOrWhiteSpace(filter.Role))
+            query = query.Where(u=>u.Role.ToString().ToLower() == filter.Role.ToLower());
         var totalRecors = await query.CountAsync();
         var users = await query.Skip((filter.PageNumber - 1) * filter.PageSize)
             .Take(filter.PageSize).ToListAsync();
@@ -31,19 +33,19 @@ public class UserRepository(DataContext context):IUserRepository
             totalRecors);
     }
 
-    public async Task<Response<UserGetDto>> GetById(int id)
-    {
-        var find = await context.Users.FindAsync(id);
-        if(find == null) return new Response<UserGetDto>(404,"User not found");
-        var dto = new UserGetDto()
+        public async Task<Response<UserGetDto>> GetById(int id)
         {
-            Id = find.Id,
-            Name = find.Name,
-            PassworodHash = find.PasswordHash,
-            Role = find.Role
-        };
-        return new Response<UserGetDto>(200,"User Found!", dto);
-    }
+            var find = await context.Users.FindAsync(id);
+            if(find == null) return new Response<UserGetDto>(404,"User not found");
+            var dto = new UserGetDto()
+            {
+                Id = find.Id,
+                Name = find.Name,
+                PassworodHash = find.PasswordHash,
+                Role = find.Role
+            };
+            return new Response<UserGetDto>(200,"User Found!", dto);
+        }
 
     public async Task<Response<UserGetDto>> Update(UserUpdateDto dto)
     {
