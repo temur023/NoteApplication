@@ -73,3 +73,4 @@ The frontend communicates with the backend API at `http://localhost:5000/api` by
 - Tailwind CSS
 - date-fns
 
+

@@ -29,6 +29,8 @@ public static class RegisterDependencies
         services.AddScoped<INoteService, NoteService>();
         services.AddScoped<IReminderRepository, ReminderRepository>();
         services.AddScoped<IReminderService, ReminderService>();
+        services.AddScoped<INoteRepository, NoteRepository>();
+        services.AddScoped<INoteService, NoteService>();
         services.AddScoped<HttpContextAccessor>();
         return services;
     }

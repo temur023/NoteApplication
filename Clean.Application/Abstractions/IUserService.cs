@@ -10,4 +10,6 @@ public interface IUserService
     Task<Response<UserGetDto>> GetById(int id);
     Task<Response<UserGetDto>> Update(UserUpdateDto dto);
     Task<Response<string>> Delete(int id);
+    Task SaveTelegramChatId(string username, long chatId);
+
 }

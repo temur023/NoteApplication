@@ -29,6 +29,23 @@ public class AuthRepository(DataContext context, ITokenRepository service):IAuth
         return new Response<LoginResponseDto>(200,"Login successful", response);
     }
 
+    public async Task<Response<LoginResponseDto>> LoginByTelegram(TelegramLoginRequestDto dto)
+    {
+        var user = await context.Users.FirstOrDefaultAsync(u => u.TelegramChatId == dto.ChatId);
+        if (user == null)
+            return new Response<LoginResponseDto>(404, "No account linked to this Telegram account. Please link your account first.");
+
+        var token = await service.GenerateJwtToken(user);
+
+        var response = new LoginResponseDto
+        {
+            Token = token,
+            Name = user.Name,
+            Role = user.Role.ToString()
+        };
+        return new Response<LoginResponseDto>(200, "Login successful", response);
+    }
+
     public async Task<Response<UserGetDto>> Create(UserCreateDto dto)
     {
         var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.PasswordHash);

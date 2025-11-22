@@ -6,5 +6,6 @@ namespace Clean.Application.Services;
 public interface IAuthService
 {
     Task<Response<LoginResponseDto>> Login(LoginRequestDto dto);
+    Task<Response<LoginResponseDto>> LoginByTelegram(TelegramLoginRequestDto dto);
     Task<Response<UserGetDto>> Create(UserCreateDto dto);
 }

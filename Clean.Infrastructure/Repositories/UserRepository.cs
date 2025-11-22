@@ -1,13 +1,15 @@
+using System.Security.Claims;
 using Clean.Application.Abstractions;
 using Clean.Application.Dtos.User;
 using Clean.Application.Filters;
 using Clean.Application.Responses;
 using Clean.Infrastructure.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Clean.Infrastructure.Repositories;
 
-public class UserRepository(DataContext context):IUserRepository
+public class UserRepository(DataContext context, IHttpContextAccessor httpContextAccessor):IUserRepository
 {
     public async Task<PagedResponse<UserGetDto>> GetAll(UserFilter filter)
     {
@@ -65,7 +67,6 @@ public class UserRepository(DataContext context):IUserRepository
         };
         return new Response<UserGetDto>(200,"User Updated!", user);
     }
-
     public async Task<Response<string>> Delete(int id)
     {
         var find = await context.Users.FindAsync(id);
@@ -74,4 +75,13 @@ public class UserRepository(DataContext context):IUserRepository
         await context.SaveChangesAsync();
         return new Response<string>(200,"User Deleted!");
     }
+    public async Task SaveTelegramChatId(string username, long chatId)
+    {
+        var user = await context.Users.FirstOrDefaultAsync(u => u.Name == username);
+        if (user == null) return;
+
+        user.TelegramChatId = chatId;
+        await context.SaveChangesAsync();
+    }
+
 }

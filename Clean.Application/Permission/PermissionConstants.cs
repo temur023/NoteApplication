@@ -2,13 +2,7 @@ namespace Clean.Permissions;
 
 public static class PermissionConstants
 {
-
-    public static class Company
-    {
-        public const string View = "Permissions.Company.View";
-        public const string Manage = "Permissions.Company.Manage";
-    }
-
+    
     public static class Users
     {
         public const string View = "Permissions.Users.View";
@@ -16,22 +10,16 @@ public static class PermissionConstants
         public const string Manage = "Permissions.Users.Manage";
     }
 
-    public static class Rooms
+    public static class Notes
     {
-        public const string View = "Permissions.Rooms.View";
-        public const string Manage = "Permissions.Rooms.Manage";
-    }
-    public static class RoomEquipments
-    {
-        public const string View = "Permissions.RoomEquipments.View";
-        public const string Manage = "Permissions.RoomEquipments.Manage";
+        public const string View = "Permissions.Notes.View";
+        public const string Manage = "Permissions.Notes.Manage";
     }
 
-    public static class Bookings
+    public static class Reminders
     {
-        public const string View = "Permissions.Bookings.View";
-        public const string Manage = "Permissions.Bookings.Manage";
-        public const string ManageSelf = "Permissions.Bookings.ManageSelf";
+        public const string View = "Permissions.Reminders.View";
+        public const string Manage = "Permissions.Reminders.Manage";
     }
     
 }

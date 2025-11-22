@@ -26,4 +26,9 @@ public class UserService(IUserRepository repository):IUserService
     {
         return await repository.Delete(id);
     }
+
+    public async Task SaveTelegramChatId(string username, long chatId)
+    {
+        await repository.SaveTelegramChatId(username, chatId);
+    }
 }

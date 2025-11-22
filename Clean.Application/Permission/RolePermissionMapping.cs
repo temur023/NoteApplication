@@ -10,11 +10,21 @@ public static class RolePermissionMapping
         {
             Role.Admin, new List<string>
             {
+                PermissionConstants.Users.Manage,
+                PermissionConstants.Users.View,
+                PermissionConstants.Notes.Manage,
+                PermissionConstants.Notes.View,
+                PermissionConstants.Reminders.Manage,
+                PermissionConstants.Reminders.View
             }
         },
         {
             Role.User, new List<string>
             {
+                PermissionConstants.Notes.Manage,
+                PermissionConstants.Notes.View,
+                PermissionConstants.Reminders.Manage,
+                PermissionConstants.Reminders.View,
             }
         },
     };

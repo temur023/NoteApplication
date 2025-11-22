@@ -3,6 +3,8 @@
 public class User
 {
     public int Id { get; set; }
+    
+    public long TelegramChatId { get; set; }
     public string Name { get; set; }
     public string PasswordHash { get; set; }
     public Role Role { get; set; }

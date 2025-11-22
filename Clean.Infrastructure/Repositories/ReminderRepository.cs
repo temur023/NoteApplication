@@ -1,18 +1,26 @@
+using System.Security.Claims;
 using Clean.Application.Abstractions;
 using Clean.Application.Dtos.Reminder;
 using Clean.Application.Filters;
 using Clean.Application.Responses;
 using Clean.Domain.Entities;
 using Clean.Infrastructure.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Clean.Infrastructure.Repositories;
 
-public class ReminderRepository(DataContext context):IReminderRepository
+public class ReminderRepository(DataContext context, IHttpContextAccessor httpContextAccessor):IReminderRepository
 {
+    private int? GetCurrentUserId() => int.TryParse(httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value, out var userId) ? userId : null;
     public async Task<PagedResponse<ReminderGetDto>> GetAll(ReminderFilter filter)
     {
+        var currentUserId = GetCurrentUserId();
+        if (currentUserId == null)
+            return new PagedResponse<ReminderGetDto>(new List<ReminderGetDto>(), 0, filter.PageNumber, filter.PageSize);
+
         var query = context.Reminders.AsQueryable();
+        query = query.Where(x=>x.Note.UserId == currentUserId.Value);
         if(filter.NoteId.HasValue)
             query = query.Where(x => x.NoteId == filter.NoteId.Value);
         var totalRecords = await query.CountAsync();
@@ -34,7 +42,11 @@ public class ReminderRepository(DataContext context):IReminderRepository
 
     public async Task<Response<ReminderGetDto>> GetById(int id)
     {
-        var find = await context.Reminders.FirstOrDefaultAsync(r => r.Id == id);
+        var currentUserId = GetCurrentUserId();
+        if (currentUserId == null)
+            return new Response<ReminderGetDto>(404,"User not found");
+        
+        var find = await context.Reminders.FirstOrDefaultAsync(r => r.Id == id && r.Note.UserId == currentUserId.Value);
         if(find == null) return new Response<ReminderGetDto>(404,"Reminder not found");
         var dto = new ReminderGetDto()
         {
@@ -47,8 +59,13 @@ public class ReminderRepository(DataContext context):IReminderRepository
 
     public async Task<Response<ReminderGetDto>> Create(ReminderCreateDto dto)
     {
+        var currentUserId = GetCurrentUserId();
+        if (currentUserId == null)
+            return new Response<ReminderGetDto>(404,"User not found");
+        
         var model = new Reminder()
         {
+            UserId = currentUserId.Value,
             NoteId = dto.NoteId,
             ReminderTime = dto.ReminderTime
         };
@@ -65,8 +82,12 @@ public class ReminderRepository(DataContext context):IReminderRepository
 
     public async Task<Response<ReminderGetDto>> Update(ReminderUpdateDto dto)
     {
-        var find = await context.Reminders.FirstOrDefaultAsync(r => r.Id == dto.Id);
-        if(find == null) return new Response<ReminderGetDto>(404,"Reminder not found");
+        var currentUserId = GetCurrentUserId();
+        if (currentUserId == null)
+            return new Response<ReminderGetDto>(404,"User not found");
+        
+        var find = await context.Reminders.FirstOrDefaultAsync(r => r.Id == dto.Id && r.Note.UserId == currentUserId.Value);
+        if (find == null) return new Response<ReminderGetDto>(404,"Reminder not found");
         find.ReminderTime = dto.ReminderTime;
         await context.SaveChangesAsync();
         var reminder = new ReminderGetDto()
@@ -80,8 +101,11 @@ public class ReminderRepository(DataContext context):IReminderRepository
 
     public async Task<Response<string>> Delete(int id)
     {
-        var find = await context.Reminders.FirstOrDefaultAsync(r => r.Id == id);
-        if(find == null) return new Response<string>(404,"Reminder not found");
+        var currentUserId = GetCurrentUserId();
+        if (currentUserId == null)
+            return new Response<string>(404,"User not found");
+        var find = await context.Reminders.FirstOrDefaultAsync(r => r.Id == id && r.Note.UserId == currentUserId.Value);
+        if (find == null) return new Response<string>(404,"Reminder not found");
         context.Reminders.Remove(find);
         await context.SaveChangesAsync();
         return new Response<string>(200, "Reminder deleted");

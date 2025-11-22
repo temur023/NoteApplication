@@ -34,6 +34,7 @@ public class NoteRepository(DataContext context, IHttpContextAccessor httpContex
 
         var dto = notes.Select(n => new NoteGetDto
         {
+            Id = n.Id,
             CreatedAt = n.CreatedAt.ToLocalTime(),
             Title = n.Title,
             Content = n.Content
@@ -49,6 +50,7 @@ public class NoteRepository(DataContext context, IHttpContextAccessor httpContex
         if(find == null) return new Response<NoteGetDto>(404,"Note not found!");
         var dto = new NoteGetDto()
         {
+            Id = find.Id,
             CreatedAt = find.CreatedAt.ToLocalTime(),
             Title = find.Title,
             Content = find.Content,
@@ -72,6 +74,7 @@ public class NoteRepository(DataContext context, IHttpContextAccessor httpContex
         await context.SaveChangesAsync();
         var note = new NoteGetDto()
         {
+            Id = model.Id,
             CreatedAt = model.CreatedAt.ToLocalTime(),
             Title = model.Title,
             Content = model.Content,
@@ -90,6 +93,7 @@ public class NoteRepository(DataContext context, IHttpContextAccessor httpContex
         await context.SaveChangesAsync();
         var note = new NoteGetDto()
         {
+            Id = find.Id,
             CreatedAt = find.CreatedAt.ToLocalTime(),
             Title = find.Title,
             Content = find.Content,
