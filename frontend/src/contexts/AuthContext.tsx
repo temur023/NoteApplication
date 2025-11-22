@@ -14,6 +14,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [user, setUser] = useState<LoginResponse | null>(null);
 
   useEffect(() => {
+    // Check localStorage for existing session
     const token = localStorage.getItem('token');
     const userStr = localStorage.getItem('user');
     if (token && userStr) {

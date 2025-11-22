@@ -299,3 +299,6 @@ D:/MyProjects/NoteApp/Clean.Web/obj/Debug/net9.0/ref/Clean.Web.dll
 /Users/fsdf/Documents/Projects/NoteApplication/Clean.Web/obj/Debug/net9.0/Clean.Web.pdb
 /Users/fsdf/Documents/Projects/NoteApplication/Clean.Web/obj/Debug/net9.0/Clean.Web.genruntimeconfig.cache
 /Users/fsdf/Documents/Projects/NoteApplication/Clean.Web/obj/Debug/net9.0/ref/Clean.Web.dll
+/Users/fsdf/Documents/Projects/NoteApplication/Clean.Web/bin/Debug/net9.0/BouncyCastle.Cryptography.dll
+/Users/fsdf/Documents/Projects/NoteApplication/Clean.Web/bin/Debug/net9.0/MailKit.dll
+/Users/fsdf/Documents/Projects/NoteApplication/Clean.Web/bin/Debug/net9.0/MimeKit.dll

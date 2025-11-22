@@ -12,11 +12,6 @@ public class AuthService(IAuthRepository service):IAuthService
         return login;
     }
 
-    public async Task<Response<LoginResponseDto>> LoginByTelegram(TelegramLoginRequestDto dto)
-    {
-        return await service.LoginByTelegram(dto);
-    }
-
     public async Task<Response<UserGetDto>> Create(UserCreateDto dto)
     {
         var create = await service.Create(dto);

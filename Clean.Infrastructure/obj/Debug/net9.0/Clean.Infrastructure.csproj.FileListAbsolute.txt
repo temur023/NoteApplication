@@ -17,6 +17,12 @@ D:/MyProjects/NoteApp/Clean.Infrastructure/obj/Debug/net9.0/refint/Clean.Infrast
 D:/MyProjects/NoteApp/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.pdb
 D:/MyProjects/NoteApp/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.genruntimeconfig.cache
 D:/MyProjects/NoteApp/Clean.Infrastructure/obj/Debug/net9.0/ref/Clean.Infrastructure.dll
+/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.csproj.AssemblyReference.cache
+/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.AssemblyInfoInputs.cache
+/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.AssemblyInfo.cs
+/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.sourcelink.json
 /Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/bin/Debug/net9.0/Clean.Infrastructure.deps.json
 /Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/bin/Debug/net9.0/Clean.Infrastructure.runtimeconfig.json
 /Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/bin/Debug/net9.0/Clean.Infrastructure.dll
@@ -25,12 +31,6 @@ D:/MyProjects/NoteApp/Clean.Infrastructure/obj/Debug/net9.0/ref/Clean.Infrastruc
 /Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/bin/Debug/net9.0/Clean.Domain.dll
 /Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/bin/Debug/net9.0/Clean.Application.pdb
 /Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/bin/Debug/net9.0/Clean.Domain.pdb
-/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.csproj.AssemblyReference.cache
-/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.AssemblyInfoInputs.cache
-/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.AssemblyInfo.cs
-/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.csproj.CoreCompileInputs.cache
-/Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.sourcelink.json
 /Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.In.D3D4E96B.Up2Date
 /Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/Clean.Infrastructure.dll
 /Users/fsdf/Documents/Projects/NoteApplication/Clean.Infrastructure/obj/Debug/net9.0/refint/Clean.Infrastructure.dll

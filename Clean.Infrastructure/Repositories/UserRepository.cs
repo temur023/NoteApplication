@@ -75,13 +75,4 @@ public class UserRepository(DataContext context, IHttpContextAccessor httpContex
         await context.SaveChangesAsync();
         return new Response<string>(200,"User Deleted!");
     }
-    public async Task SaveTelegramChatId(string username, long chatId)
-    {
-        var user = await context.Users.FirstOrDefaultAsync(u => u.Name == username);
-        if (user == null) return;
-
-        user.TelegramChatId = chatId;
-        await context.SaveChangesAsync();
-    }
-
 }
