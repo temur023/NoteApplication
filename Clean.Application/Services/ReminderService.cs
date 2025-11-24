@@ -31,9 +31,5 @@ public class ReminderService(IReminderRepository repository):IReminderService
     {
         return await repository.Delete(id);
     }
-
-    public async Task<Response<string>> SendEmail()
-    {
-        return await repository.SendEmail();
-    }
+    
 }

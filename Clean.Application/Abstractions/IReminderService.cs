@@ -11,5 +11,4 @@ public interface IReminderService
     Task<Response<ReminderGetDto>>  Create(ReminderCreateDto dto);
     Task<Response<ReminderGetDto>> Update(ReminderUpdateDto dto);
     Task<Response<string>> Delete(int id);
-    Task<Response<string>> SendEmail();
 }

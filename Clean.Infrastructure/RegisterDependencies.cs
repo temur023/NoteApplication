@@ -31,6 +31,9 @@ public static class RegisterDependencies
         services.AddScoped<IReminderService, ReminderService>();
         services.AddScoped<INoteRepository, NoteRepository>();
         services.AddScoped<INoteService, NoteService>();
+        services.AddScoped<IEmailRepository, EmailRepository>();
+        services.AddScoped<IEmailService,EmailService>();
+        services.AddHostedService<EmailBackgroundService>();
         services.AddScoped<HttpContextAccessor>();
         return services;
     }

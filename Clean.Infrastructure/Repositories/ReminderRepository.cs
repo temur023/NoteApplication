@@ -116,33 +116,4 @@ public class ReminderRepository(DataContext context, IHttpContextAccessor httpCo
         await context.SaveChangesAsync();
         return new Response<string>(200, "Reminder deleted");
     }
-
-    public async Task<Response<string>> SendEmail()
-    {
-        var currentUserId = GetCurrentUserId().Value;
-        var reminder = await context.Reminders.Include(r=>r.User).FirstOrDefaultAsync(r =>
-            r.UserId == currentUserId &&  r.ReminderTime >= DateTime.UtcNow.AddMinutes(-1) &&
-                                                                            r.ReminderTime <= DateTime.UtcNow.AddMinutes(1));
-        if (reminder != null)
-        {
-            var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse(configuration["EmailUserName"]));
-            email.To.Add(MailboxAddress.Parse(reminder.User.Email));
-            email.Subject = "You Reminder";
-            email.Body = new TextPart(TextFormat.Html) { Text = "It is time to " + reminder.Body };
-
-            using var smtp = new SmtpClient();
-
-            smtp.ServerCertificateValidationCallback = (s, c, h, e) => true;
-
-            await smtp.ConnectAsync(configuration.GetSection("EmailHost").Value, 587, SecureSocketOptions.StartTls);
-            await smtp.AuthenticateAsync(configuration.GetSection("EmailUserName").Value,
-                configuration.GetSection("EmailPassword").Value);
-            await smtp.SendAsync(email);
-            await smtp.DisconnectAsync(true);
-            return new Response<string>(200, "Email sent");
-        }
-
-        return new Response<string>(404, "Reminder not found");
-    }
 }

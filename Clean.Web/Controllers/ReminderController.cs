@@ -40,11 +40,5 @@ public class ReminderController(IReminderService service):ControllerBase
     {
         return Ok(await service.Delete(id));
     }
-
-    [PermissionAuthorize(PermissionConstants.Reminders.View)]
-    [HttpPost("send-email")]
-    public async Task<IActionResult> SendEamil()
-    {
-        return Ok(await service.SendEmail());
-    }
+    
 }   
